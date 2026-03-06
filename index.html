@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pikado liga</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Pikado Liga</h1>
+      <p>Javni prikaz rezultata i administratorski unos kola</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card hero-card">
+      <div>
+        <h2>Trenutna tabela</h2>
+        <p>Admin unosi rezultate mečeva, a tabela i pozicije se automatski računaju.</p>
+      </div>
+      <div class="hero-actions">
+        <button id="open-admin-btn" class="btn btn-primary">Admin login</button>
+        <button id="reset-demo-btn" class="btn btn-secondary">Vrati demo podatke</button>
+      </div>
+    </section>
+
+    <section class="layout-grid">
+      <section class="card">
+        <h2>Igrači</h2>
+        <div id="players-grid" class="players-grid"></div>
+      </section>
+
+      <section class="card">
+        <h2>Tabela lidera</h2>
+        <div class="table-wrap">
+          <table id="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rang</th>
+                <th>Igrač</th>
+                <th>Pobjede</th>
+                <th>Porazi</th>
+                <th>Bodovi</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Odigrani mečevi</h2>
+        <span id="matches-count" class="badge">0 mečeva</span>
+      </div>
+      <div id="matches-list" class="matches-list"></div>
+    </section>
+  </main>
+
+  <div id="admin-modal" class="modal hidden">
+    <div class="modal-backdrop" id="close-modal-backdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2>Administracija</h2>
+        <button id="close-admin-btn" class="icon-btn" aria-label="Zatvori">×</button>
+      </div>
+
+      <div id="login-view">
+        <p class="muted">Demo login za lokalnu verziju:</p>
+        <p class="demo-credentials"><strong>Korisnik:</strong> admin &nbsp; <strong>Lozinka:</strong> 1234</p>
+
+        <form id="login-form" class="form-grid">
+          <label>
+            Korisničko ime
+            <input type="text" id="username" placeholder="Unesi korisničko ime" required />
+          </label>
+          <label>
+            Lozinka
+            <input type="password" id="password" placeholder="Unesi lozinku" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Prijavi se</button>
+          <p id="login-error" class="error-text"></p>
+        </form>
+      </div>
+
+      <div id="admin-view" class="hidden">
+        <div class="admin-topbar">
+          <p class="success-text">Prijavljen si kao administrator.</p>
+          <button id="logout-btn" class="btn btn-secondary">Odjava</button>
+        </div>
+
+        <form id="match-form" class="form-grid">
+          <label>
+            Kolo
+            <input type="text" id="round-name" placeholder="npr. Kolo 3" required />
+          </label>
+
+          <label>
+            Igrač 1
+            <select id="player1" required></select>
+          </label>
+
+          <label>
+            Igrač 2
+            <select id="player2" required></select>
+          </label>
+
+          <label>
+            Pobjednik
+            <select id="winner" required></select>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Sačuvaj rezultat</button>
+          <p id="match-error" class="error-text"></p>
+        </form>
+
+        <div class="admin-actions">
+          <button id="clear-matches-btn" class="btn btn-danger">Obriši sve rezultate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
